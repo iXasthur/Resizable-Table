@@ -104,7 +104,10 @@ LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam) 
             HDC hdc = BeginPaint(hwnd, &ps);
             Gdiplus::Graphics graphics = Gdiplus::Graphics(hdc);
 
-            Gdiplus::RectF clientRectF(0, 0, rcClientRect.right - rcClientRect.left, rcClientRect.bottom - rcClientRect.top);
+            LONG edgesOffset = 10;
+            LONG tableWidth = rcClientRect.right - rcClientRect.left - edgesOffset*2;
+            LONG tableHeight = rcClientRect.bottom - rcClientRect.top - edgesOffset*2;
+            Gdiplus::RectF clientRectF(edgesOffset, edgesOffset, tableWidth, tableHeight);
             tableDrawer.draw(&graphics, clientRectF);
 
             EndPaint(hwnd, &ps);

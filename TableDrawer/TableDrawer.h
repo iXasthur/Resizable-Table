@@ -52,8 +52,8 @@ private:
             }
 
             for (int j = 0; j < columnCount; ++j) {
-                cells[i*columnCount + j].bounds.X = cellWidth*(Gdiplus::REAL)j;
-                cells[i*columnCount + j].bounds.Y = offsetY;
+                cells[i*columnCount + j].bounds.X = cellWidth*(Gdiplus::REAL)j + drawRect.X;
+                cells[i*columnCount + j].bounds.Y = offsetY + drawRect.Y;
             }
         }
 
@@ -62,8 +62,10 @@ private:
 
     void drawCells(Gdiplus::Graphics *graphics, const std::vector<TableCell> &cells, const Gdiplus::Font &font){
         for(const TableCell &cell: cells){
-            Gdiplus::SolidBrush solidBrush(Gdiplus::Color(255, 0, 0, 0));
+            Gdiplus::Pen pen = Gdiplus::Pen(Gdiplus::Color::Black, 2);
+            Gdiplus::SolidBrush solidBrush(Gdiplus::Color::Black);
             graphics->DrawString(cell.string.c_str(), -1, &font, cell.bounds, nullptr, &solidBrush);
+            graphics->DrawRectangle(&pen, cell.bounds);
         }
     }
 
