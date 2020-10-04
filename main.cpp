@@ -22,13 +22,13 @@ LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
 int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE, PWSTR pCmdLine, int nCmdShow) {
 
     tableDrawer.strings.emplace_back(L"1");
-    tableDrawer.strings.emplace_back(L"2222222222222");
+    tableDrawer.strings.emplace_back(L"222222 222 2222");
     tableDrawer.strings.emplace_back(L"33333333333333333333333333333");
-    tableDrawer.strings.emplace_back(L"44444444444444444444444444444444444444");
+    tableDrawer.strings.emplace_back(L"444444444 44444444444 44444 444 444 4444444");
     tableDrawer.strings.emplace_back(L"5");
     tableDrawer.strings.emplace_back(L"66666");
-    tableDrawer.strings.emplace_back(L"");
-    tableDrawer.strings.emplace_back(L"77777777777777777777777");
+    tableDrawer.strings.emplace_back(L"77 777777 7777 777 777 7 7777");
+    tableDrawer.strings.emplace_back(L"1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22");
     tableDrawer.strings.emplace_back(L"8888");
     tableDrawer.strings.emplace_back(L"9");
     tableDrawer.strings.emplace_back(L"000000000000000000000000000000000000000000000000000000");

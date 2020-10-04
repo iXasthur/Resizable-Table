@@ -78,7 +78,7 @@ public:
     }
 
     void draw(Gdiplus::Graphics *graphics, Gdiplus::RectF drawRect) {
-        if (columnCount > 0) {
+        if (columnCount > 0 && !strings.empty()) {
             const Gdiplus::FontFamily fontFamily = Gdiplus::FontFamily(L"Arial");
             const Gdiplus::REAL fontSize = 12;
             const Gdiplus::FontStyle fontStyle = Gdiplus::FontStyleBold;
