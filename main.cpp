@@ -15,7 +15,7 @@ const SIZE MIN_WINDOW_SIZE = SIZE{400, 300};
 const SIZE FIRST_WINDOW_SIZE = SIZE{800, 600};
 const COLORREF BACKGROUND_COLOR = RGB(255, 255, 255);
 
-static TableDrawer tableDrawer = TableDrawer(6);
+static TableDrawer tableDrawer = TableDrawer(6); // 6 columns with auto rows
 
 LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
 
