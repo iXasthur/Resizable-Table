@@ -16,7 +16,8 @@ public:
     std::wstring string;
     Gdiplus::RectF bounds;
 
-    TableCell(Gdiplus::Graphics *graphics, const std::wstring &str, const Gdiplus::Font &font, Gdiplus::REAL cellWidth, Gdiplus::REAL maxHeight){
+    TableCell(Gdiplus::Graphics *graphics, const std::wstring &str, const Gdiplus::Font &font, Gdiplus::REAL cellWidth,
+              Gdiplus::REAL maxHeight) {
         this->string = str;
 
         bounds = Gdiplus::RectF{0, 0, cellWidth, maxHeight};

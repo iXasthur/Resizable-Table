@@ -14,28 +14,29 @@
 
 class TableDrawer {
 private:
-    std::vector<TableCell> calculateCells(Gdiplus::Graphics *graphics, const Gdiplus::Font &font, Gdiplus::RectF drawRect){
-        Gdiplus::REAL cellWidth = drawRect.Width/(Gdiplus::REAL)columnCount;
+    std::vector<TableCell>
+    calculateCells(Gdiplus::Graphics *graphics, const Gdiplus::Font &font, Gdiplus::RectF drawRect) {
+        Gdiplus::REAL cellWidth = drawRect.Width / (Gdiplus::REAL) columnCount;
 
         std::vector<TableCell> cells = {};
 
-        for(const std::wstring &string: strings){
+        for (const std::wstring &string: strings) {
             TableCell cell = TableCell(graphics, string, font, cellWidth, drawRect.Height);
             cells.emplace_back(cell);
         }
 
-        int emptyCellsToAdd = abs((int)strings.size() % columnCount - columnCount) % columnCount;
+        int emptyCellsToAdd = abs((int) strings.size() % columnCount - columnCount) % columnCount;
         for (int i = 0; i < emptyCellsToAdd; ++i) {
             TableCell cell = TableCell(graphics, L"", font, cellWidth, drawRect.Height);
             cells.emplace_back(cell);
         }
 
-        int rowCount = (int)cells.size()/columnCount;
+        int rowCount = (int) cells.size() / columnCount;
         Gdiplus::REAL rowHeights[rowCount];
         for (int i = 0; i < rowCount; ++i) {
             Gdiplus::REAL maxHeight = 0;
             for (int j = 0; j < columnCount; ++j) {
-                Gdiplus::REAL height = cells[i*columnCount + j].bounds.Height;
+                Gdiplus::REAL height = cells[i * columnCount + j].bounds.Height;
                 if (height > maxHeight) {
                     maxHeight = height;
                 }
@@ -43,7 +44,7 @@ private:
             rowHeights[i] = maxHeight;
 
             for (int j = 0; j < columnCount; ++j) {
-                cells[i*columnCount + j].bounds.Height = rowHeights[i];
+                cells[i * columnCount + j].bounds.Height = rowHeights[i];
             }
 
             Gdiplus::REAL offsetY = 0;
@@ -52,16 +53,16 @@ private:
             }
 
             for (int j = 0; j < columnCount; ++j) {
-                cells[i*columnCount + j].bounds.X = cellWidth*(Gdiplus::REAL)j + drawRect.X;
-                cells[i*columnCount + j].bounds.Y = offsetY + drawRect.Y;
+                cells[i * columnCount + j].bounds.X = cellWidth * (Gdiplus::REAL) j + drawRect.X;
+                cells[i * columnCount + j].bounds.Y = offsetY + drawRect.Y;
             }
         }
 
         return cells;
     }
 
-    void drawCells(Gdiplus::Graphics *graphics, const std::vector<TableCell> &cells, const Gdiplus::Font &font){
-        for(const TableCell &cell: cells){
+    void drawCells(Gdiplus::Graphics *graphics, const std::vector<TableCell> &cells, const Gdiplus::Font &font) {
+        for (const TableCell &cell: cells) {
             Gdiplus::Pen pen = Gdiplus::Pen(Gdiplus::Color::Black, 2);
             Gdiplus::SolidBrush solidBrush(Gdiplus::Color::Black);
             graphics->DrawString(cell.string.c_str(), -1, &font, cell.bounds, nullptr, &solidBrush);
